@@ -1,27 +1,148 @@
-# Modulo_4_Projeto_2
+# **Projeto em Grupo - Programadores Cariocas Modulo 4**
 
-League of Legends Dashboard
+###### *League of Legends Dashboard*
 
-Objetivo:
-montar um dashboard com base no conjunto de dados
+Objetivo
+> montar um dashboard com base no conjunto de dados
 escolhidos pelo squad.
 
-Instruções para importação e uso do banco de dados:
-1-	Baixe os arquivos do repositório git e descompacte todos os arquivos zipados;
-2-	Abra o Xampp e execute os seguintes códigos;
-  a.	mysql -u root -e ‘create database db_projeto_4’
-  b.	mysql -u root db_projeto_4 <local do arquivo/bdtabelasLOL.sql
-  c.	mysql -u root -e ‘use db_projeto_4; show tables’
-  d.	se aparecer 7 tabelas o procedimento de importação foi correto.
-3-	Abra o MySQL Workbench e estabeleça uma conexão e execute os seguintes códigos:
-4-	use db_projeto_4;
-5-	Após esses procedimentos é possível executar as queries já existentes no repositório GIT.
+### Principais perguntas:
+###### Código no mysql
+
+ 1. Quais Jogadores  do Time Coreano SKT que mais eliminaram?
+    ```
+    USE db_Projeto_4;
+
+    SELECT * FROM kills;
+
+    select Killer, count(killer)
+    from kills
+    where kills like '%STF%'
+    group by killer
+    order by count(killer) desc limit 5
+    ```
+2. Quais os 10 jogadores com mais abates no total?
+   ```
+    USE db_Projeto_4;
+
+    SELECT * FROM kills;
+
+    select Killer, count(killer)
+    from kills
+    group by killer
+    order by count(killer) desc limit 10;
+    ```
+    
+3. Quais os 5 jogadores de cada time que mais sofreram abates?
+   ```
+    USE db_Projeto_4;
+
+    SELECT * FROM kills;
+
+    select Victim, count(Victim)
+    from kills
+    where Victim like '%SKT%
+    order by count(killer) desc limit 10;
+    ```
+
+4. Quais os 10 jogadores que mais sofreram abates no total?
+   ```
+    USE db_Projeto_4;
+
+    SELECT * FROM kills;
+
+    select Victim, count(Victim)
+    from kills
+    order by Victim count(Victim) desc limit 10;
+    ```
+5. Quais foram os abates mais rápidos de cada time e contra quem?
+   ```
+    USE db_Projeto_4;
+
+    SELECT * FROM kills;
+
+    select  Time, Killer, Victim
+    from kills
+    where Killer like '%SKT%'
+    order by time asc limit 10;
+    ```
+6. Quais foram os campeões mais banidos no lado azul do mapa?
+    ```
+    USE db_Projeto_4;
+
+    SELECT * FROM bans;
+
+    select  Team, ban_1, count(ban_1)
+    from bans
+    where Team like '%blue%'
+    group by ban_1 order by count(ban_1) desc limit 5;
+    ```
+   
+7. Quais foram os campeões mais banidos no mapa do lado vermelho?]
+   ```
+    USE db_Projeto_4;
+
+    SELECT * FROM bans;
+
+    select  Team, ban_1, count(ban_1)
+    from bans
+    where Team like '%red%'
+    group by ban_1 order by count(ban_1) desc limit 5;
+    ```
+
+8. Quantos Jogos cada time jogou do lado vermelho do mapa, e em que campeonato e ano?
+     ```
+    USE db_Projeto_4;
+
+    SELECT * FROM matchinfo;
+
+    select  League, Year, blueTeamTag, count(bResult)
+    from matchinfo
+    where blueTeamTag = 'SKT' and year = 2015
+    group by League;
+    ```
+
+   9. Quantos Jogos cada time jogou do lado azul do mapa, e em que campeonato e ano?
+   ```
+    USE db_Projeto_4;
+
+    SELECT * FROM matchinfo;
+
+    select  League, Year, blueTeamTag, count(bResult)
+    from matchinfo
+    where blueTeamTag = 'SKT' and year = 2015
+    group by League;
+    ```
+
+   10. Quantos monstros foram abatidos? 
+   ```
+    USE db_Projeto_4;
+
+    SELECT * FROM monsters;
+
+    select  Type, count(Type) from monsters group by Type order by count(Type) desc;
+    ```
+
 
 Feramentas Utilizadas:
--Workbench MySQL
--Power Bi
--VisualCode
--Canva
+- **Workbench MySQL**
+- **Power Bi**
+- **VisualCode**
+- **Canva**
 
-Direitos Autorais:
-Camille Soares, Eduardo Fernando, Ana Caroline, Jennifer Arruda e João Vitor
+#### Instruções para importação e uso do banco de dados:
+1.	Baixe os arquivos do repositório git;
+2.	Abra o Xampp e execute os seguintes códigos;
+    - msql -u root -e ‘create database db_projeto_4’
+    - msql -u root db_projeto_4 <local do arquivo/bdtabelasLOL.sql>
+    - mysql -u root -e ‘use db_projeto_4; show tables’
+    - se aparecer 7 tabelas o procedimento de importação foi correto.
+3.	Abra o MySQL Workbench e estabeleça uma conexão e execute os seguintes códigos:
+4.	use db_projeto_4;
+5.	Após esses procedimentos é possível executar as querys já existentes no repositório GIT.
+
+
+**Direitos Autorais:**
+*Camille Soares, Eduardo Fernando, Ana Caroline, Jenifer Arruda e João Vitor.*
+
+
